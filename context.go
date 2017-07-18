@@ -579,9 +579,9 @@ func (dc *Context) DrawImageAnchored(im image.Image, x, y int, ax, ay float64) {
 	p := image.Pt(x, y)
 	r := image.Rectangle{p, p.Add(s)}
 	if dc.mask == nil {
-		draw.Draw(dc.im, r, im, image.ZP, draw.Over)
+		draw.Draw(dc.im, r, im, im.Bounds().Min, draw.Over)
 	} else {
-		draw.DrawMask(dc.im, r, im, image.ZP, dc.mask, p, draw.Over)
+		draw.DrawMask(dc.im, r, im, im.Bounds().Min, dc.mask, p, draw.Over)
 	}
 }
 
